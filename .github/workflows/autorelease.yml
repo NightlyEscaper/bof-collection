@@ -34,19 +34,14 @@ jobs:
 
       - name: Build artifacts
         run: |
-          ls -la
-          cd bof-collection/ChromiumKeyDump/src/
+          cd ChromiumKeyDump/src/
           i686-w64-mingw32-gcc -c ChromiumKeyDump.cpp -o ChromiumKeyDump.x86.o
           x86_64-w64-mingw32-gcc -c ChromiumKeyDump.cpp -o ChromiumKeyDump.x64.o
-          cd ../../Sleeper/src
-          i686-w64-mingw32-gcc -c Sleeper.cpp -o Sleeper.x86.o
-          x86_64-w64-mingw32-gcc -c Sleeper.cpp -o Sleeper.x64.o
-          cd ../../..
+          cd ../../
+          mkdir artifacts
           VERSION=$(git describe --tags --abbrev=0)
           cat extension.json | jq ".version |= \"$VERSION\"" > ./artifacts/extension.json
-          mv ./bof-collection/compiled/*.o ./artifacts/
-          mv bof-collection/ChromiumKeyDump/src/*.o artifacts
-          mv bof-collection/Sleeper/src/*.o artifacts
+          mv ChromiumKeyDump/src/*.o artifacts
           cd artifacts
           tar -czvf ../bof-collection.tar.gz .
 
