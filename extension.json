@@ -1,0 +1,31 @@
+{
+    "name": "ChromiumKeyDump",
+    "version": "0.0.0",
+    "command_name": "chromiumkeydump",
+    "extension_author": "c2biz",
+    "original_author": "rxwx",
+    "repo_url": "https://github.com/sliverarmory/bof-collection",
+    "help": "Dump Chrome/Edge Masterkey",
+    "depends_on": "coff-loader",
+    "entrypoint": "go",
+    "files": [
+        {
+            "os": "windows",
+            "arch": "amd64",
+            "path": "ChromiumKeyDump.x64.o"
+        },
+        {
+            "os": "windows",
+            "arch": "386",
+            "path": "ChromiumKeyDump.x86.o"
+        }
+    ],
+    "arguments": [
+        {
+            "name": "browser",
+            "desc": "0=chrome, 1=edge",
+            "type": "int",
+            "optional": false
+        }
+    ]
+}
