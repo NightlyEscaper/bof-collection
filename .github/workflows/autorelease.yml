@@ -34,6 +34,7 @@ jobs:
 
       - name: Build artifacts
         run: |
+          ls -la
           cd bof-collection/ChromiumKeyDump/src/
           i686-w64-mingw32-gcc -c ChromiumKeyDump.cpp -o ChromiumKeyDump.x86.o
           x86_64-w64-mingw32-gcc -c ChromiumKeyDump.cpp -o ChromiumKeyDump.x64.o
