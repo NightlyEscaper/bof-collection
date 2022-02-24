@@ -43,14 +43,14 @@ jobs:
           cat extension.json | jq ".version |= \"$VERSION\"" > ./artifacts/extension.json
           mv ChromiumKeyDump/src/*.o artifacts
           cd artifacts
-          tar -czvf ../bof-collection.tar.gz .
+          tar -czvf ../chromiumkeydump.tar.gz .
 
       - name: Sign Package
         run: |
           touch ~/minisign.key && chmod 600 ~/minisign.key
           echo -e "${{ secrets.MINISIGN_PRIVATE_KEY }}" > ~/minisign.key
           MANIFEST=$(cat ./artifacts/extension.json | base64 -w 0)
-          bash -c "echo \"\" | ~/minisign -s ~/minisign.key -S -m ./bof-collection.tar.gz -t \"$MANIFEST\" -x bof-collection.minisig"
+          bash -c "echo \"\" | ~/minisign -s ~/minisign.key -S -m ./chromiumkeydump.tar.gz -t \"$MANIFEST\" -x chromiumkeydump.minisig"
 
       - name: "Publish Release"
         uses: "marvinpinto/action-automatic-releases@latest"
@@ -58,5 +58,5 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
           files: |
-            ./bof-collection.tar.gz
-            ./bof-collection.minisig
+            ./chromiumkeydump.tar.gz
+            ./chromiumkeydump.minisig
