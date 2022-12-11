@@ -1,29 +1,29 @@
 {
-    "name": "ChromiumKeyDump",
+    "name": "Sleeper",
     "version": "0.0.0",
-    "command_name": "chromiumkeydump",
+    "command_name": "sleeper",
     "extension_author": "c2biz",
     "original_author": "rxwx",
-    "repo_url": "https://github.com/sliverarmory/bof-collection",
-    "help": "Dump Chrome/Edge Masterkey",
+    "repo_url": "https://github.com/NightlyEscaper/bof-collection",
+    "help": "Prevent host from Sleeping.",
     "depends_on": "coff-loader",
     "entrypoint": "go",
     "files": [
         {
             "os": "windows",
             "arch": "amd64",
-            "path": "ChromiumKeyDump.x64.o"
+            "path": "Sleeper.x64.o"
         },
         {
             "os": "windows",
             "arch": "386",
-            "path": "ChromiumKeyDump.x86.o"
+            "path": "Sleeper.x86.o"
         }
     ],
     "arguments": [
         {
-            "name": "browser",
-            "desc": "0=chrome, 1=edge",
+            "name": "action",
+            "desc": "0=off\tSet the `ES_CONTINUOUS` flag and return to Default state.\n1=on\tSet the `ES_SYSTEM_REQUIRED` flag to prevent the Sleep.\n65=Force\tSet the `ES_SYSTEM_REQUIRED|ES_AWAYMODE_REQUIRED` flags to prevent the Sleep, even if the Sleep button is pressed",
             "type": "int",
             "optional": false
         }
